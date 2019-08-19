@@ -1,4 +1,4 @@
-from bottle import Bottle
+from bottle import Bottle, request, template
 
 bottle = Bottle()
 
@@ -9,7 +9,8 @@ bottle = Bottle()
 @bottle.route('/')
 def hello():
     """Return a friendly HTTP greeting."""
-    return 'Hello Frank!'
+    session = request.get_cookie("session-1")
+    return template('cookie = {{session}}', session=session)
 
 
 # Define an handler for 404 errors.
